@@ -1,0 +1,30 @@
+<h2>how to add a new page:</h2>
+<h3>FOR INTERNAL PAGES:</h3>
+<ol>
+<li>first, create the content of the page in the editor and save the source code view (Tools -&gt; Source Code in the editor) to a file with the desired page extension as the name, using underscores for any spaces in the name (has to be unique from existing pages, see below), e.g. 'some_new_album.html'. This should be JUST the last part of the page extension, meaning, do not include any slashes in the name</li>
+<li>second, move the new html file into the corresponding 'category' folder under (site home)/pages/(category).</li>
+<li>third, open up the main data file data.js under (site home)/js/build/data.js in SublimeText (or Notepad)</li>
+<li>fourth, find the section in data.js that corresponds to the section/category where the new page will live. note the "links" subsection within the data. this is where you add a new entry. go to the bottom of the existing list of links, right before the next section. Copy a SINGLE entry, everything BETWEEN and INCLUDING the Curly Braces e.g. { "linkTitle": "Music Blog", "ref":"posts_music", "external": true, "contents": "http://syncorsink.tumblr.com/tagged/music" }</li>
+<li>fifth, paste what you've copied into the data.js in the place where you'd like it to appear in order (if you want it to be the first link, paste it before the first entry in "links", etc.). Make sure that when you paste, you are keeping the 'integrity' of Curly Braces that contain each item. Also, UNLESS it is the LAST entry in the list, be sure to add a comma AFTER the paste entry (and make sure there is a comma after the entry that comes before the pasted entry).</li>
+<li>sixth, now edit the pasted chunk in the following ways:
+<ol>
+<li>change the "linkTitle" property to what you want to appear in the clickable link item.</li>
+<li>change the "ref" property to match the name you have your html file, MINUS the .html part"</li>
+<li>change the "external" property to "false" since this is an internal page.</li>
+<li>the "contents" field is only necessary for EXTERNAL pages. depending on which existing item you copied, you may or may not see it. Since this is internal, you can ignore it if it's there, although it's better to just delete the whole row (and remove the comma after the "external" row) </li>
+</ol>
+</li>
+</ol>
+<p>&nbsp;</p>
+<h3>FOR EXTERNAL PAGES:</h3>
+<ol>
+<li>Follow the Third, Fourth, and Fifth steps above (i.e. open data.js, find the section you want, copy an entry, paste it where you want it to go and make sure you preserve the integrity of the Curly braces.)</li>
+<li>Next, edit the pasted Chunk same as in the Internal Page steps above, except the following:
+<ol>
+<li>the "ref" property doesn't matter to external pages, so remove it or leave it, it shouldn't trigger as long as you...</li>
+<li>change the "external" property to "true". This will cause the page to render as a regular link and have the little icon next to it that lets the user know it's an external link</li>
+<li>change (or add if it isn't there is the part you copy-pasted) the "contents" property to match the link destination (starting with http). this should be the FULL link, same as you'd paste into an 'a href ="" ' in html. The resulting row in the entry should look like: "contents":"http://somesite.com/somelink.html". Finally, make sure that there is a comment after the row with "external":true, and NOT after the row with "contents"</li>
+</ol>
+</li>
+</ol>
+<p>GENERAL NOTE: As you can guess, the data.js is where you can go to change the order of things in general.  The key thing to note when you do this is the following rule: <strong>At every level of the data, the LAST entry in a set should NOT have a comma after it, but EACH OTHER entry MUST have a comma after it</strong>.  We can discuss and I can help with this if it's not clear</p>
